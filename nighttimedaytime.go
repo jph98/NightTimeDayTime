@@ -124,7 +124,7 @@ func displaySunDetails(sunresults SunResults) {
 
 func main() {
 
-	fmt.Printf("\n- Daytime/Nighttime -\n")
+	fmt.Printf("\n- Nighttime/Daytime -\n")
 
 	date := "today"
 
