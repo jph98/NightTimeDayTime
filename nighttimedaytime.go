@@ -43,6 +43,13 @@ type SunResults struct {
 	Status string `json:"status"`
 }
 
+func check(e error) {
+
+	if (e != nil) {
+		panic(e)
+	}
+}
+
 /* 
  * Get the current location using the geoip web service
  */
@@ -53,18 +60,14 @@ func getLocation() (Location) {
 	res, err := http.Get(geoip_url)
 	defer res.Body.Close()		
 
-	if err != nil {
-		panic(err)
-	}		
+	check(err)	
 
 	fmt.Printf("\nGetting your location...\n\n")
 	var location Location
 	decoder := json.NewDecoder(res.Body)
 	err = decoder.Decode(&location)	
 
-	if err != nil {
-		panic(err)
-	}
+	check(err)
 	
 	return location
 }
@@ -104,9 +107,7 @@ func getSunDetails(date string, location Location) (SunResults) {
 	decoder := json.NewDecoder(res.Body)
 	err = decoder.Decode(&sunresults)
 
-	if err != nil {
-		panic(err)
-	}
+	check(err)
 
 	return sunresults	
 }
